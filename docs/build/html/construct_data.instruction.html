@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data.instruction package &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="static/jquery.js?v=5d32c60e"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="static/documentation_options.js?v=8d563738"></script>
+        <script src="static/doctools.js?v=9bcbadda"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Evaluating LLMs" href="inference.html" />
+    <link rel="prev" title="construct_data.hf_to_schema package" href="construct_data.hf_to_schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="construct_data.html">construct_data package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="construct_data.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html">construct_data.hf_to_schema package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">construct_data.instruction package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#module-construct_data.constants">construct_data.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct-data-create-benchmark-module">construct_data.create_benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#module-construct_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Evaluating LLMs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="construct_data.html">construct_data package</a></li>
+      <li class="breadcrumb-item active">construct_data.instruction package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/construct_data.instruction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="construct-data-instruction-package">
+<h1>construct_data.instruction package<a class="headerlink" href="#construct-data-instruction-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-construct_data.instruction.alternate_case_correct_answer">
+<span id="construct-data-instruction-alternate-case-correct-answer-module"></span><h2>construct_data.instruction.alternate_case_correct_answer module<a class="headerlink" href="#module-construct_data.instruction.alternate_case_correct_answer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.alternate_case_correct_answer.alternate_case_correct_answer">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.alternate_case_correct_answer.</span></span><span class="sig-name descname"><span class="pre">alternate_case_correct_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/alternate_case_correct_answer.html#alternate_case_correct_answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.alternate_case_correct_answer.alternate_case_correct_answer" title="Link to this definition"></a></dt>
+<dd><p>This function applies the alternate_case_correct_answer instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.alternate_case_correct_answer.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.alternate_case_correct_answer.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/alternate_case_correct_answer.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.alternate_case_correct_answer.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>transforms the given string into alternate case. The first character will
+always be in uppercase, followed by lowercase, and then uppercase and so on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_candidate</strong> (<em>str</em>) – input string</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string in alternate case</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.alternate_case_correct_answer.apply_instruction_incorrect">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.alternate_case_correct_answer.</span></span><span class="sig-name descname"><span class="pre">apply_instruction_incorrect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/alternate_case_correct_answer.html#apply_instruction_incorrect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.alternate_case_correct_answer.apply_instruction_incorrect" title="Link to this definition"></a></dt>
+<dd><p>transforms the given string into alternate case. The first character will
+always be in lowecase, followed by uppercase, and the lowercase and so on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_candidate</strong> (<em>str</em>) – input string</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string in alternate case</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.capitalize_correct_answer">
+<span id="construct-data-instruction-capitalize-correct-answer-module"></span><h2>construct_data.instruction.capitalize_correct_answer module<a class="headerlink" href="#module-construct_data.instruction.capitalize_correct_answer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.capitalize_correct_answer.capitalize_correct_answer">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.capitalize_correct_answer.</span></span><span class="sig-name descname"><span class="pre">capitalize_correct_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/capitalize_correct_answer.html#capitalize_correct_answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.capitalize_correct_answer.capitalize_correct_answer" title="Link to this definition"></a></dt>
+<dd><p>This function applies the capitalize_correct_answer instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.increment_correct_numeric_answer_by_one">
+<span id="construct-data-instruction-increment-correct-numeric-answer-by-one-module"></span><h2>construct_data.instruction.increment_correct_numeric_answer_by_one module<a class="headerlink" href="#module-construct_data.instruction.increment_correct_numeric_answer_by_one" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.increment_correct_numeric_answer_by_one.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.increment_correct_numeric_answer_by_one.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/increment_correct_numeric_answer_by_one.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.increment_correct_numeric_answer_by_one.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>The function checks if the provided text contains a numeric value.
+If the text is a numeric value then increments the numeric value by one and
+returns the updated text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_candidate</strong> (<em>str</em>) – input text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.increment_correct_numeric_answer_by_one.increment_correct_numeric_answer_by_one">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.increment_correct_numeric_answer_by_one.</span></span><span class="sig-name descname"><span class="pre">increment_correct_numeric_answer_by_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/increment_correct_numeric_answer_by_one.html#increment_correct_numeric_answer_by_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.increment_correct_numeric_answer_by_one.increment_correct_numeric_answer_by_one" title="Link to this definition"></a></dt>
+<dd><p>This function applies the increment_correct_numeric_answer_by_one instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.increment_incorrect_numeric_answers_by_one">
+<span id="construct-data-instruction-increment-incorrect-numeric-answers-by-one-module"></span><h2>construct_data.instruction.increment_incorrect_numeric_answers_by_one module<a class="headerlink" href="#module-construct_data.instruction.increment_incorrect_numeric_answers_by_one" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.increment_incorrect_numeric_answers_by_one.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.increment_incorrect_numeric_answers_by_one.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_answer_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/increment_incorrect_numeric_answers_by_one.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.increment_incorrect_numeric_answers_by_one.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>Input candidate here is the “ground truth” that we want to avoid printing out.
+And then perform increment on all the other options in the candidate answer set</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.increment_incorrect_numeric_answers_by_one.increment_incorrect_numeric_answers_by_one">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.increment_incorrect_numeric_answers_by_one.</span></span><span class="sig-name descname"><span class="pre">increment_incorrect_numeric_answers_by_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/increment_incorrect_numeric_answers_by_one.html#increment_incorrect_numeric_answers_by_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.increment_incorrect_numeric_answers_by_one.increment_incorrect_numeric_answers_by_one" title="Link to this definition"></a></dt>
+<dd><p>This function applies the increment_incorrect_numeric_answers_by_one instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.numformat_numeric_answer">
+<span id="construct-data-instruction-numformat-numeric-answer-module"></span><h2>construct_data.instruction.numformat_numeric_answer module<a class="headerlink" href="#module-construct_data.instruction.numformat_numeric_answer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.numformat_numeric_answer.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.numformat_numeric_answer.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/numformat_numeric_answer.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.numformat_numeric_answer.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function checks if the given text contains a numeric value or not.
+If the text contains a numeric value, then returns the numeric value as a string
+with decimal places</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_candidate</strong> (<em>str</em>) – input text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.numformat_numeric_answer.numformat_numeric_answer">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.numformat_numeric_answer.</span></span><span class="sig-name descname"><span class="pre">numformat_numeric_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/numformat_numeric_answer.html#numformat_numeric_answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.numformat_numeric_answer.numformat_numeric_answer" title="Link to this definition"></a></dt>
+<dd><p>This function applies the numformat_numeric_answer instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.print_correct_answer">
+<span id="construct-data-instruction-print-correct-answer-module"></span><h2>construct_data.instruction.print_correct_answer module<a class="headerlink" href="#module-construct_data.instruction.print_correct_answer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer.print_correct_answer">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer.</span></span><span class="sig-name descname"><span class="pre">print_correct_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer.html#print_correct_answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer.print_correct_answer" title="Link to this definition"></a></dt>
+<dd><p>This function applies the print_correct_answer instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.print_correct_answer_append_string">
+<span id="construct-data-instruction-print-correct-answer-append-string-module"></span><h2>construct_data.instruction.print_correct_answer_append_string module<a class="headerlink" href="#module-construct_data.instruction.print_correct_answer_append_string" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer_append_string.generate_random_string">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer_append_string.</span></span><span class="sig-name descname"><span class="pre">generate_random_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer_append_string.html#generate_random_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer_append_string.generate_random_string" title="Link to this definition"></a></dt>
+<dd><p>This function returns a random string from the list of strings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ranbdom string</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer_append_string.print_correct_answer_append_string">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer_append_string.</span></span><span class="sig-name descname"><span class="pre">print_correct_answer_append_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer_append_string.html#print_correct_answer_append_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer_append_string.print_correct_answer_append_string" title="Link to this definition"></a></dt>
+<dd><p>This function applies the print_correct_answer_append_string instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.print_correct_answer_in_words">
+<span id="construct-data-instruction-print-correct-answer-in-words-module"></span><h2>construct_data.instruction.print_correct_answer_in_words module<a class="headerlink" href="#module-construct_data.instruction.print_correct_answer_in_words" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer_in_words.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer_in_words.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer_in_words.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer_in_words.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function checks if the given input text contains any numeric value and
+retiurns the numeric value in words</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_candidate</strong> (<em>str</em>) – input text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ttransformed text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer_in_words.print_correct_answer_in_words">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer_in_words.</span></span><span class="sig-name descname"><span class="pre">print_correct_answer_in_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer_in_words.html#print_correct_answer_in_words"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer_in_words.print_correct_answer_in_words" title="Link to this definition"></a></dt>
+<dd><p>This function applies the print_correct_answer_in_words instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.print_correct_answer_label">
+<span id="construct-data-instruction-print-correct-answer-label-module"></span><h2>construct_data.instruction.print_correct_answer_label module<a class="headerlink" href="#module-construct_data.instruction.print_correct_answer_label" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.print_correct_answer_label.print_correct_answer_label">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.print_correct_answer_label.</span></span><span class="sig-name descname"><span class="pre">print_correct_answer_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/print_correct_answer_label.html#print_correct_answer_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.print_correct_answer_label.print_correct_answer_label" title="Link to this definition"></a></dt>
+<dd><p>This function applies the print_correct_answer_label instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.reverse_correct_answer">
+<span id="construct-data-instruction-reverse-correct-answer-module"></span><h2>construct_data.instruction.reverse_correct_answer module<a class="headerlink" href="#module-construct_data.instruction.reverse_correct_answer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.reverse_correct_answer.reverse_correct_answer">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.reverse_correct_answer.</span></span><span class="sig-name descname"><span class="pre">reverse_correct_answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/reverse_correct_answer.html#reverse_correct_answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.reverse_correct_answer.reverse_correct_answer" title="Link to this definition"></a></dt>
+<dd><p>This function applies the reverse_correct_answer instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.reverse_correct_answer_alternate_case">
+<span id="construct-data-instruction-reverse-correct-answer-alternate-case-module"></span><h2>construct_data.instruction.reverse_correct_answer_alternate_case module<a class="headerlink" href="#module-construct_data.instruction.reverse_correct_answer_alternate_case" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.reverse_correct_answer_alternate_case.reverse_correct_answer_alternate_case">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.reverse_correct_answer_alternate_case.</span></span><span class="sig-name descname"><span class="pre">reverse_correct_answer_alternate_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/reverse_correct_answer_alternate_case.html#reverse_correct_answer_alternate_case"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.reverse_correct_answer_alternate_case.reverse_correct_answer_alternate_case" title="Link to this definition"></a></dt>
+<dd><p>This function applies the reverse_correct_answer_alternate_case instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.sort_only_incorrect_answers">
+<span id="construct-data-instruction-sort-only-incorrect-answers-module"></span><h2>construct_data.instruction.sort_only_incorrect_answers module<a class="headerlink" href="#module-construct_data.instruction.sort_only_incorrect_answers" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.sort_only_incorrect_answers.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.sort_only_incorrect_answers.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_answer_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/sort_only_incorrect_answers.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.sort_only_incorrect_answers.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function removes the given item from the list and returns the sorted list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_candidate</strong> (<em>str</em>) – item to be removed</p></li>
+<li><p><strong>candidate_answer_set</strong> (<em>list</em>) – list containing all item</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list with the given item removed</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.sort_only_incorrect_answers.sort_only_incorrect_answers">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.sort_only_incorrect_answers.</span></span><span class="sig-name descname"><span class="pre">sort_only_incorrect_answers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/sort_only_incorrect_answers.html#sort_only_incorrect_answers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.sort_only_incorrect_answers.sort_only_incorrect_answers" title="Link to this definition"></a></dt>
+<dd><p>This function applies the sort_only_incorrect_answers instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.sort_options_to_create_string">
+<span id="construct-data-instruction-sort-options-to-create-string-module"></span><h2>construct_data.instruction.sort_options_to_create_string module<a class="headerlink" href="#module-construct_data.instruction.sort_options_to_create_string" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.sort_options_to_create_string.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.sort_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidate_answer_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/sort_options_to_create_string.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.sort_options_to_create_string.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function takes in a list as input, sorts the list in alphabetical order.
+The last alphanumeric character from each list item is extracted and concatenated
+to form a string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>candidate_answer_set</strong> (<em>list</em>) – list of items</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string formed last characters from each list item post sorting</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.sort_options_to_create_string.sort_options_to_create_string">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.sort_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">sort_options_to_create_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/sort_options_to_create_string.html#sort_options_to_create_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.sort_options_to_create_string.sort_options_to_create_string" title="Link to this definition"></a></dt>
+<dd><p>This function applies the sort_options_to_create_string instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.use_incorrect_options_to_create_string">
+<span id="construct-data-instruction-use-incorrect-options-to-create-string-module"></span><h2>construct_data.instruction.use_incorrect_options_to_create_string module<a class="headerlink" href="#module-construct_data.instruction.use_incorrect_options_to_create_string" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.use_incorrect_options_to_create_string.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.use_incorrect_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_answer_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/use_incorrect_options_to_create_string.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.use_incorrect_options_to_create_string.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function takes in a list and a list item as input. The given item is removed
+from the list and sorts the list in alphabetical order.
+The last alphanumeric character from each list item is extracted and concatenated
+to form a string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>candidate_answer_set</strong> (<em>list</em>) – list of items</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string formed last characters from each list item post sorting</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.use_incorrect_options_to_create_string.use_incorrect_options_to_create_string">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.use_incorrect_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">use_incorrect_options_to_create_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/use_incorrect_options_to_create_string.html#use_incorrect_options_to_create_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.use_incorrect_options_to_create_string.use_incorrect_options_to_create_string" title="Link to this definition"></a></dt>
+<dd><p>This function applies the use_incorrect_options_to_create_string instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction.use_options_to_create_string">
+<span id="construct-data-instruction-use-options-to-create-string-module"></span><h2>construct_data.instruction.use_options_to_create_string module<a class="headerlink" href="#module-construct_data.instruction.use_options_to_create_string" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.use_options_to_create_string.apply_instruction">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.use_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">apply_instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_answer_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/use_options_to_create_string.html#apply_instruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.use_options_to_create_string.apply_instruction" title="Link to this definition"></a></dt>
+<dd><p>This function takes in a list as input, sorts the list in alphabetical order.
+The last alphanumeric character from each list item is extracted and concatenated
+to form a string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_candidate</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>candidate_answer_set</strong> (<em>list</em>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.instruction.use_options_to_create_string.use_options_to_create_string">
+<span class="sig-prename descclassname"><span class="pre">construct_data.instruction.use_options_to_create_string.</span></span><span class="sig-name descname"><span class="pre">use_options_to_create_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/instruction/use_options_to_create_string.html#use_options_to_create_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.instruction.use_options_to_create_string.use_options_to_create_string" title="Link to this definition"></a></dt>
+<dd><p>This function applies the use_options_to_create_string instruction on
+the given instance. In addition, it defines the reasoning and instruction
+following errors for the instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_instance</strong> (<em>dict</em>) – input instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.instruction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-construct_data.instruction" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="construct_data.hf_to_schema.html" class="btn btn-neutral float-left" title="construct_data.hf_to_schema package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="inference.html" class="btn btn-neutral float-right" title="Evaluating LLMs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

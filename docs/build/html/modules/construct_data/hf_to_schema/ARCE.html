@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data.hf_to_schema.ARCE &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">construct_data.hf_to_schema.ARCE</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for construct_data.hf_to_schema.ARCE</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">from</span> <span class="nn">..constants</span> <span class="kn">import</span> <span class="n">create_schema</span><span class="p">,</span> <span class="n">SCHEMA_KEYS</span>
+
+
+<div class="viewcode-block" id="get_choices">
+<a class="viewcode-back" href="../../../construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.get_choices">[docs]</a>
+<span class="k">def</span> <span class="nf">get_choices</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This functions returns the possible candidate options and their corresponding values</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        options (_type_): Dictionary containing options and labels</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _type_: Candidate options, Candidate values, Dictionary mapping the two</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">candidate_set</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">candidate_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">candidate_set</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+    <span class="n">candidate_labels</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
+
+    <span class="n">key_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">candidate_set</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">):</span>
+        <span class="n">key_dict</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span>
+
+    <span class="k">return</span> <span class="n">candidate_set</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">,</span> <span class="n">key_dict</span></div>
+
+
+
+<div class="viewcode-block" id="transform_arce">
+<a class="viewcode-back" href="../../../construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.transform_arce">[docs]</a>
+<span class="k">def</span> <span class="nf">transform_arce</span><span class="p">(</span><span class="n">test_instance</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert instance into the schema defined</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        test_instance (dict): each instance of the ARC-Challenge dataset</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: the provided instance in the schema defined</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># initialize the schema for every instance</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">create_schema</span><span class="p">()</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">DATA_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ARCE&quot;</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">HF_DATA_NAME</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;https://huggingface.co/datasets/allenai/ai2_arc&quot;</span>
+    <span class="p">)</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_TYPE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MCQ&quot;</span>
+
+    <span class="c1"># Adding meta data information</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTANCE_ID</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_instance</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Copying untransformed data fields</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INPUT_INSTANCE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Question: </span><span class="si">{</span><span class="n">test_instance</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">candidate_set</span><span class="p">,</span> <span class="n">candidate_labels</span><span class="p">,</span> <span class="n">key_dict</span> <span class="o">=</span> <span class="n">get_choices</span><span class="p">(</span><span class="n">test_instance</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">])</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate_set</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate_labels</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_LABEL</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_instance</span><span class="p">[</span><span class="s2">&quot;answerKey&quot;</span><span class="p">]]</span>
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">key_dict</span><span class="p">[</span>
+        <span class="n">test_instance</span><span class="p">[</span><span class="s2">&quot;answerKey&quot;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_PROMPT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Given a question and &quot;</span>
+        <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">]))</span>
+        <span class="o">+</span> <span class="s2">&quot; options: &quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+        <span class="o">+</span> <span class="s2">&quot; as candidate answers, &quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_PREFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_PROMPT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">&quot;answer the question by selecting the value associated with the option label corresponding to the correct answer.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_SUFFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_OUTPUT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_instance</span><span class="p">[</span><span class="s2">&quot;answerKey&quot;</span><span class="p">]]</span>
+
+    <span class="k">assert</span> <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INPUT_INSTANCE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_SET</span><span class="o">.</span><span class="n">value</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_LABEL</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_SET</span><span class="o">.</span><span class="n">value</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">assert</span> <span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_PROMPT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">schema</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_OUTPUT</span><span class="o">.</span><span class="n">value</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">schema</span></div>
+
+
+
+<div class="viewcode-block" id="ARCE">
+<a class="viewcode-back" href="../../../construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.ARCE">[docs]</a>
+<span class="k">class</span> <span class="nc">ARCE</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This Class holds the ARC-Easy dataset post transformation into the schema required</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the ARCE instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># load the dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;allenai/ai2_arc&quot;</span><span class="p">,</span> <span class="s2">&quot;ARC-Easy&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+        <span class="c1"># convert the dataset into the schema defined</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intermediate_representation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+            <span class="n">transform_arce</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">column_names</span>
+        <span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

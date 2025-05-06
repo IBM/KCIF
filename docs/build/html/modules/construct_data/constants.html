@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data.constants &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../static/jquery.js?v=5d32c60e"></script>
+        <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../static/documentation_options.js?v=8d563738"></script>
+        <script src="../../static/doctools.js?v=9bcbadda"></script>
+        <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">construct_data.constants</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for construct_data.constants</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+
+<div class="viewcode-block" id="SCHEMA_KEYS">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.SCHEMA_KEYS">[docs]</a>
+<span class="k">class</span> <span class="nc">SCHEMA_KEYS</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define SCHEMA_KEYS, an Enum of keys to be used in our schema</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DATA_SET</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span>
+    <span class="n">HF_DATA_NAME</span> <span class="o">=</span> <span class="s2">&quot;hf_dataset&quot;</span>
+    <span class="n">TASK_TYPE</span> <span class="o">=</span> <span class="s2">&quot;task_type&quot;</span>
+    <span class="n">INSTRUCTION_ID</span> <span class="o">=</span> <span class="s2">&quot;instruction_id&quot;</span>
+
+    <span class="n">INSTANCE_ID</span> <span class="o">=</span> <span class="s2">&quot;instance_id&quot;</span>
+
+    <span class="n">INPUT_INSTANCE</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;dataset_input&quot;</span>  <span class="c1"># Instance given to the LLM without any instruction.</span>
+    <span class="p">)</span>
+    <span class="n">CANDIDATE_ANSWER_SET</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;candidate_answer_set&quot;</span>  <span class="c1"># the list of all posssible answers for that instance</span>
+    <span class="p">)</span>
+    <span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;candidate_answer_label_space&quot;</span>  <span class="c1"># the list of all posssible answer labels</span>
+    <span class="p">)</span>
+    <span class="n">GROUND_TRUTH_ANSWER_LABEL</span> <span class="o">=</span> <span class="s2">&quot;ground_truth_answer_label&quot;</span>
+    <span class="n">GROUND_TRUTH_ANSWER_TEXT</span> <span class="o">=</span> <span class="s2">&quot;ground_truth_answer_text&quot;</span>
+
+    <span class="n">TASK_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;dataset_instruction&quot;</span>  <span class="c1"># Task Prompt. Task prompt should not define how to generate the answer.</span>
+    <span class="n">FINAL_SUFFIX_TASK_INSTRUCTION</span> <span class="o">=</span> <span class="s2">&quot;final_suffix_task_instruction&quot;</span>  <span class="c1"># The final task instruction which gets appended to the input and dataset_instruction</span>
+    <span class="n">FINAL_PREFIX_TASK_INSTRUCTION</span> <span class="o">=</span> <span class="s2">&quot;final_prefix_task_instruction&quot;</span>  <span class="c1"># The final task instruction which gets prepended to the input and dataset_instruction</span>
+
+    <span class="n">TASK_INSTRUCTIONS</span> <span class="o">=</span> <span class="s2">&quot;task_instructions&quot;</span>
+    <span class="n">INSTRUCTION_OUTPUT</span> <span class="o">=</span> <span class="s2">&quot;instruction_output&quot;</span>
+    <span class="n">INSTRUCTION_FOLLOWING_ERRORS_SET</span> <span class="o">=</span> <span class="s2">&quot;instruction_following_errors_set&quot;</span>
+    <span class="n">REASONING_ERROR_SET</span> <span class="o">=</span> <span class="s2">&quot;reasoning_error_set&quot;</span>
+    <span class="n">COT_INSTRUCTION</span> <span class="o">=</span> <span class="s2">&quot;cot_instruction&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="create_schema">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.create_schema">[docs]</a>
+<span class="k">def</span> <span class="nf">create_schema</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the schema dictionary</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: schema</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">DATA_SET</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">HF_DATA_NAME</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_TYPE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;MCQ&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_ID</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTANCE_ID</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INPUT_INSTANCE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_SET</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_LABEL</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_PROMPT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_PREFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_SUFFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_INSTRUCTIONS</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_OUTPUT</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_FOLLOWING_ERRORS_SET</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">REASONING_ERROR_SET</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">COT_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">schema</span></div>
+
+
+
+<div class="viewcode-block" id="CLASSIFICATION">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.CLASSIFICATION">[docs]</a>
+<span class="k">class</span> <span class="nc">CLASSIFICATION</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define all possible instruction categories in our KCIF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CLASSIFICATION</span> <span class="o">=</span> <span class="s2">&quot;CLASSIFICATION&quot;</span>
+    <span class="n">STRING_MANIPULATION</span> <span class="o">=</span> <span class="s2">&quot;STRING_MANIPULATION&quot;</span>
+    <span class="n">LABEL_MANIPULATION</span> <span class="o">=</span> <span class="s2">&quot;LABEL_MANIPULATION&quot;</span>
+    <span class="n">NUMERIC_MANIPULATION</span> <span class="o">=</span> <span class="s2">&quot;NUMERIC_MANIPULATION&quot;</span>
+    <span class="n">LIST_MANIPULATION</span> <span class="o">=</span> <span class="s2">&quot;LIST_MANIPULATION&quot;</span>
+    <span class="n">LIST_STRING_MANIPULATION</span> <span class="o">=</span> <span class="s2">&quot;LIST_STRING_MANIPULATION&quot;</span>
+    <span class="n">FORMATTING_LISTS</span> <span class="o">=</span> <span class="s2">&quot;FORMATTING_LISTS&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<span class="n">COT_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot; Think step by step and in the end, finish your response with &#39;Response:$RESPONSE&#39; where $RESPONSE (without quotes) is the final output expected.&quot;</span>
+
+
+<div class="viewcode-block" id="CATEGORY_SHORTFORM">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.CATEGORY_SHORTFORM">[docs]</a>
+<span class="k">class</span> <span class="nc">CATEGORY_SHORTFORM</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define short string names of all possible instruction categories in our KCIF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">shortform</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;String Manipulation&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List&quot;</span><span class="p">:</span> <span class="s2">&quot;List Ops.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">:</span> <span class="s2">&quot;List Ops. Conditional&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Format Ans.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;No Manipulation&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Numeric Manipulation&quot;</span><span class="p">:</span> <span class="s2">&quot;Numeric&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">:</span> <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="TABLE_ORDERING">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.TABLE_ORDERING">[docs]</a>
+<span class="k">class</span> <span class="nc">TABLE_ORDERING</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines ordering of instructions for computing and displaying the metrics</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Numeric Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Numeric Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="CATEGORY_MAPPING">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.CATEGORY_MAPPING">[docs]</a>
+<span class="k">class</span> <span class="nc">CATEGORY_MAPPING</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines instruction to instruction category mapping</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;alternate_case_correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;capitalize_correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reverse_correct_answer_alternate_case&quot;</span><span class="p">:</span> <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reverse_correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;numformat_numeric_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">:</span> <span class="s2">&quot;print_correct_answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer_in_words&quot;</span><span class="p">:</span> <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer_append_string&quot;</span><span class="p">:</span> <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">:</span> <span class="s2">&quot;print_correct_answer_label&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;increment_correct_numeric_answer_by_one&quot;</span><span class="p">:</span> <span class="s2">&quot;Numeric Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;increment_incorrect_numeric_answers_by_one&quot;</span><span class="p">:</span> <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sort_only_incorrect_answers&quot;</span><span class="p">:</span> <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sort_options_to_create_string&quot;</span><span class="p">:</span> <span class="s2">&quot;Operations on List&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;use_incorrect_options_to_create_string&quot;</span><span class="p">:</span> <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;use_options_to_create_string&quot;</span><span class="p">:</span> <span class="s2">&quot;Operations on List&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;String Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Format Correct Answer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;No Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Numeric Manipulation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operations on List (Conditional)&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="DATASETS">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.DATASETS">[docs]</a>
+<span class="k">class</span> <span class="nc">DATASETS</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines the datasets used in our KCIF</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MMLUPro&quot;</span><span class="p">,</span> <span class="s2">&quot;Piqa&quot;</span><span class="p">,</span> <span class="s2">&quot;Winogrande&quot;</span><span class="p">,</span> <span class="s2">&quot;BBH&quot;</span><span class="p">,</span> <span class="s2">&quot;BoolQ&quot;</span><span class="p">,</span> <span class="s2">&quot;MathQA&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="PAPER_TABLES">
+<a class="viewcode-back" href="../../construct_data.html#construct_data.constants.PAPER_TABLES">[docs]</a>
+<span class="k">class</span> <span class="nc">PAPER_TABLES</span><span class="p">:</span>
+    <span class="n">EXACT_MATCH_COLUMN_NAME</span> <span class="o">=</span> <span class="s2">&quot;em_after_response_strict&quot;</span>
+    <span class="n">IF_ERROR_COLUMN_NAME</span> <span class="o">=</span> <span class="s2">&quot;instr_follow_error_strict&quot;</span>
+    <span class="n">REASONING_ERROR_COLUMN_NAME</span> <span class="o">=</span> <span class="s2">&quot;reasoning_error_strict&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

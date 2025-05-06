@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data.hf_to_schema package &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="static/jquery.js?v=5d32c60e"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="static/documentation_options.js?v=8d563738"></script>
+        <script src="static/doctools.js?v=9bcbadda"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="construct_data.instruction package" href="construct_data.instruction.html" />
+    <link rel="prev" title="construct_data package" href="construct_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="construct_data.html">construct_data package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="construct_data.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">construct_data.hf_to_schema package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html">construct_data.instruction package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#module-construct_data.constants">construct_data.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct-data-create-benchmark-module">construct_data.create_benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#module-construct_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Evaluating LLMs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="construct_data.html">construct_data package</a></li>
+      <li class="breadcrumb-item active">construct_data.hf_to_schema package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/construct_data.hf_to_schema.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="construct-data-hf-to-schema-package">
+<h1>construct_data.hf_to_schema package<a class="headerlink" href="#construct-data-hf-to-schema-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-construct_data.hf_to_schema.ARCC">
+<span id="construct-data-hf-to-schema-arcc-module"></span><h2>construct_data.hf_to_schema.ARCC module<a class="headerlink" href="#module-construct_data.hf_to_schema.ARCC" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCC.ARCC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCC.</span></span><span class="sig-name descname"><span class="pre">ARCC</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCC.html#ARCC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCC.ARCC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the ARC-Challenge dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCC.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCC.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCC.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCC.get_choices" title="Link to this definition"></a></dt>
+<dd><p>This functions returns the possible candidate options and their corresponding values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – Dictionary containing options and labels</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Candidate options, Candidate values, Dictionary mapping the two</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCC.transform_arcc">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCC.</span></span><span class="sig-name descname"><span class="pre">transform_arcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCC.html#transform_arcc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCC.transform_arcc" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the ARC-Challenge dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.ARCE">
+<span id="construct-data-hf-to-schema-arce-module"></span><h2>construct_data.hf_to_schema.ARCE module<a class="headerlink" href="#module-construct_data.hf_to_schema.ARCE" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCE.ARCE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCE.</span></span><span class="sig-name descname"><span class="pre">ARCE</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCE.html#ARCE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCE.ARCE" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the ARC-Easy dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCE.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCE.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCE.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCE.get_choices" title="Link to this definition"></a></dt>
+<dd><p>This functions returns the possible candidate options and their corresponding values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – Dictionary containing options and labels</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Candidate options, Candidate values, Dictionary mapping the two</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.ARCE.transform_arce">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.ARCE.</span></span><span class="sig-name descname"><span class="pre">transform_arce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/ARCE.html#transform_arce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.ARCE.transform_arce" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the ARC-Challenge dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.BBH">
+<span id="construct-data-hf-to-schema-bbh-module"></span><h2>construct_data.hf_to_schema.BBH module<a class="headerlink" href="#module-construct_data.hf_to_schema.BBH" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.BBH">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BBH.</span></span><span class="sig-name descname"><span class="pre">BBH</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/BBH.html#BBH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BBH.BBH" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.BBH.BBH_OPTIONS">
+<span class="sig-name descname"><span class="pre">BBH_OPTIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)',</span> <span class="pre">'(G)',</span> <span class="pre">'(H)',</span> <span class="pre">'(I)',</span> <span class="pre">'(J)',</span> <span class="pre">'(K)',</span> <span class="pre">'(L)',</span> <span class="pre">'(M)',</span> <span class="pre">'(N)',</span> <span class="pre">'(O)',</span> <span class="pre">'(P)',</span> <span class="pre">'(Q)',</span> <span class="pre">'(R)']</span></em><a class="headerlink" href="#construct_data.hf_to_schema.BBH.BBH.BBH_OPTIONS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.BBH.BBH_TASKS">
+<span class="sig-name descname"><span class="pre">BBH_TASKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'boolean_expressions':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['True',</span> <span class="pre">'False']},</span> <span class="pre">'causal_judgement':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['Yes',</span> <span class="pre">'No']},</span> <span class="pre">'date_understanding':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)']},</span> <span class="pre">'disambiguation_qa':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)']},</span> <span class="pre">'dyck_languages':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">[]},</span> <span class="pre">'formal_fallacies':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['valid',</span> <span class="pre">'invalid']},</span> <span class="pre">'geometric_shapes':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)',</span> <span class="pre">'(G)',</span> <span class="pre">'(H)',</span> <span class="pre">'(I)',</span> <span class="pre">'(J)',</span> <span class="pre">'(K)']},</span> <span class="pre">'hyperbaton':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)']},</span> <span class="pre">'logical_deduction_five_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)']},</span> <span class="pre">'logical_deduction_seven_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)',</span> <span class="pre">'(G)']},</span> <span class="pre">'logical_deduction_three_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)']},</span> <span class="pre">'movie_recommendation':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)']},</span> <span class="pre">'multistep_arithmetic_two':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">[]},</span> <span class="pre">'navigate':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['Yes',</span> <span class="pre">'No']},</span> <span class="pre">'object_counting':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">[]},</span> <span class="pre">'penguins_in_a_table':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)']},</span> <span class="pre">'reasoning_about_colored_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)',</span> <span class="pre">'(G)',</span> <span class="pre">'(H)',</span> <span class="pre">'(I)',</span> <span class="pre">'(J)',</span> <span class="pre">'(K)',</span> <span class="pre">'(L)',</span> <span class="pre">'(M)',</span> <span class="pre">'(N)',</span> <span class="pre">'(O)',</span> <span class="pre">'(P)',</span> <span class="pre">'(Q)',</span> <span class="pre">'(R)']},</span> <span class="pre">'ruin_names':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)']},</span> <span class="pre">'salient_translation_error_detection':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)']},</span> <span class="pre">'snarks':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)']},</span> <span class="pre">'sports_understanding':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['yes',</span> <span class="pre">'no']},</span> <span class="pre">'temporal_sequences':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)']},</span> <span class="pre">'tracking_shuffled_objects_five_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)']},</span> <span class="pre">'tracking_shuffled_objects_seven_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)',</span> <span class="pre">'(D)',</span> <span class="pre">'(E)',</span> <span class="pre">'(F)',</span> <span class="pre">'(G)']},</span> <span class="pre">'tracking_shuffled_objects_three_objects':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['(A)',</span> <span class="pre">'(B)',</span> <span class="pre">'(C)']},</span> <span class="pre">'web_of_lies':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">['Yes',</span> <span class="pre">'No']},</span> <span class="pre">'word_sorting':</span> <span class="pre">{'candidate_answers':</span> <span class="pre">[]}}</span></em><a class="headerlink" href="#construct_data.hf_to_schema.BBH.BBH.BBH_TASKS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.preprocess_task_input">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BBH.</span></span><span class="sig-name descname"><span class="pre">preprocess_task_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BBH_OPTIONS</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/BBH.html#preprocess_task_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BBH.preprocess_task_input" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.regex_match_option_label_text">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BBH.</span></span><span class="sig-name descname"><span class="pre">regex_match_option_label_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/BBH.html#regex_match_option_label_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BBH.regex_match_option_label_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BBH.transform_bbh">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BBH.</span></span><span class="sig-name descname"><span class="pre">transform_bbh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BBH_OPTIONS</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/BBH.html#transform_bbh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BBH.transform_bbh" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.BoolQ">
+<span id="construct-data-hf-to-schema-boolq-module"></span><h2>construct_data.hf_to_schema.BoolQ module<a class="headerlink" href="#module-construct_data.hf_to_schema.BoolQ" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BoolQ.BoolQ">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BoolQ.</span></span><span class="sig-name descname"><span class="pre">BoolQ</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/BoolQ.html#BoolQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BoolQ.BoolQ" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the BoolQ dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BoolQ.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BoolQ.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/BoolQ.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BoolQ.get_choices" title="Link to this definition"></a></dt>
+<dd><p>This functions returns the possible candidate options and their corresponding values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Candidate options, Candidate values, Dictionary mapping the two</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.BoolQ.transform_boolq">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.BoolQ.</span></span><span class="sig-name descname"><span class="pre">transform_boolq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/BoolQ.html#transform_boolq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.BoolQ.transform_boolq" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the BoolQ dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.Hellaswag">
+<span id="construct-data-hf-to-schema-hellaswag-module"></span><h2>construct_data.hf_to_schema.Hellaswag module<a class="headerlink" href="#module-construct_data.hf_to_schema.Hellaswag" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Hellaswag.Hellaswag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Hellaswag.</span></span><span class="sig-name descname"><span class="pre">Hellaswag</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/Hellaswag.html#Hellaswag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Hellaswag.Hellaswag" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the Hellaswag dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Hellaswag.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Hellaswag.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/Hellaswag.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Hellaswag.get_choices" title="Link to this definition"></a></dt>
+<dd><p>This functions returns the possible candidate options and their corresponding values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – Dictionary containing options and labels</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Candidate options, Candidate values, Dictionary mapping the two</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Hellaswag.transform_hellaswag">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Hellaswag.</span></span><span class="sig-name descname"><span class="pre">transform_hellaswag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/Hellaswag.html#transform_hellaswag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Hellaswag.transform_hellaswag" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the Hellaswag dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.MMLUPro">
+<span id="construct-data-hf-to-schema-mmlupro-module"></span><h2>construct_data.hf_to_schema.MMLUPro module<a class="headerlink" href="#module-construct_data.hf_to_schema.MMLUPro" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MMLUPro.MMLUPro">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MMLUPro.</span></span><span class="sig-name descname"><span class="pre">MMLUPro</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/MMLUPro.html#MMLUPro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MMLUPro.MMLUPro" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the MMLUPro dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MMLUPro.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MMLUPro.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/MMLUPro.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MMLUPro.get_choices" title="Link to this definition"></a></dt>
+<dd><p>Get all choices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – choices</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>choices</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MMLUPro.get_label_space">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MMLUPro.</span></span><span class="sig-name descname"><span class="pre">get_label_space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/MMLUPro.html#get_label_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MMLUPro.get_label_space" title="Link to this definition"></a></dt>
+<dd><p>Return the label space for the given MMLU Pro task</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – options</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>label spaces</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MMLUPro.transform_mmlupro">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MMLUPro.</span></span><span class="sig-name descname"><span class="pre">transform_mmlupro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/MMLUPro.html#transform_mmlupro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MMLUPro.transform_mmlupro" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the BoolQ dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.MathQA">
+<span id="construct-data-hf-to-schema-mathqa-module"></span><h2>construct_data.hf_to_schema.MathQA module<a class="headerlink" href="#module-construct_data.hf_to_schema.MathQA" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MathQA.MathQA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MathQA.</span></span><span class="sig-name descname"><span class="pre">MathQA</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/MathQA.html#MathQA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MathQA.MathQA" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the MathQA dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MathQA.get_choices">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MathQA.</span></span><span class="sig-name descname"><span class="pre">get_choices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/MathQA.html#get_choices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MathQA.get_choices" title="Link to this definition"></a></dt>
+<dd><p>This functions returns the possible candidate options and their corresponding values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> (<em>_type_</em>) – Dictionary containing options and labels</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Candidate options, Candidate values, Dictionary mapping the two</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.MathQA.transform_mathqa">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.MathQA.</span></span><span class="sig-name descname"><span class="pre">transform_mathqa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/MathQA.html#transform_mathqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.MathQA.transform_mathqa" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the MathQA dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.Piqa">
+<span id="construct-data-hf-to-schema-piqa-module"></span><h2>construct_data.hf_to_schema.Piqa module<a class="headerlink" href="#module-construct_data.hf_to_schema.Piqa" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Piqa.Piqa">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Piqa.</span></span><span class="sig-name descname"><span class="pre">Piqa</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/Piqa.html#Piqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Piqa.Piqa" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the Piqa dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Piqa.transform_piqa">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Piqa.</span></span><span class="sig-name descname"><span class="pre">transform_piqa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/Piqa.html#transform_piqa"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Piqa.transform_piqa" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the PIQA dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema.Winogrande">
+<span id="construct-data-hf-to-schema-winogrande-module"></span><h2>construct_data.hf_to_schema.Winogrande module<a class="headerlink" href="#module-construct_data.hf_to_schema.Winogrande" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Winogrande.Winogrande">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Winogrande.</span></span><span class="sig-name descname"><span class="pre">Winogrande</span></span><a class="reference internal" href="modules/construct_data/hf_to_schema/Winogrande.html#Winogrande"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Winogrande.Winogrande" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class holds the Winogrande dataset post transformation into the schema required</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.hf_to_schema.Winogrande.transform_winogrande">
+<span class="sig-prename descclassname"><span class="pre">construct_data.hf_to_schema.Winogrande.</span></span><span class="sig-name descname"><span class="pre">transform_winogrande</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/hf_to_schema/Winogrande.html#transform_winogrande"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.hf_to_schema.Winogrande.transform_winogrande" title="Link to this definition"></a></dt>
+<dd><p>Convert instance into the schema defined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>test_instance</strong> (<em>dict</em>) – each instance of the Winogrande dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the provided instance in the schema defined</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-construct_data.hf_to_schema">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-construct_data.hf_to_schema" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="construct_data.html" class="btn btn-neutral float-left" title="construct_data package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="construct_data.instruction.html" class="btn btn-neutral float-right" title="construct_data.instruction package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

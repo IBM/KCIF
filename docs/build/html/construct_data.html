@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data package &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="static/jquery.js?v=5d32c60e"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="static/documentation_options.js?v=8d563738"></script>
+        <script src="static/doctools.js?v=9bcbadda"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="construct_data.hf_to_schema package" href="construct_data.hf_to_schema.html" />
+    <link rel="prev" title="API Reference" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">construct_data package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html">construct_data.hf_to_schema package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html">construct_data.instruction package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-construct_data.constants">construct_data.constants module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.CATEGORY_MAPPING"><code class="docutils literal notranslate"><span class="pre">CATEGORY_MAPPING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.CATEGORY_SHORTFORM"><code class="docutils literal notranslate"><span class="pre">CATEGORY_SHORTFORM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.CLASSIFICATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.DATASETS"><code class="docutils literal notranslate"><span class="pre">DATASETS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.PAPER_TABLES"><code class="docutils literal notranslate"><span class="pre">PAPER_TABLES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.SCHEMA_KEYS"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.TABLE_ORDERING"><code class="docutils literal notranslate"><span class="pre">TABLE_ORDERING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#construct_data.constants.create_schema"><code class="docutils literal notranslate"><span class="pre">create_schema()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#construct-data-create-benchmark-module">construct_data.create_benchmark module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-construct_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Evaluating LLMs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">API Reference</a></li>
+      <li class="breadcrumb-item active">construct_data package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/construct_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="construct-data-package">
+<h1>construct_data package<a class="headerlink" href="#construct-data-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="construct_data.hf_to_schema.html">construct_data.hf_to_schema package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.ARCC">construct_data.hf_to_schema.ARCC module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCC.ARCC"><code class="docutils literal notranslate"><span class="pre">ARCC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCC.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCC.transform_arcc"><code class="docutils literal notranslate"><span class="pre">transform_arcc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.ARCE">construct_data.hf_to_schema.ARCE module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.ARCE"><code class="docutils literal notranslate"><span class="pre">ARCE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.ARCE.transform_arce"><code class="docutils literal notranslate"><span class="pre">transform_arce()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.BBH">construct_data.hf_to_schema.BBH module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.BBH"><code class="docutils literal notranslate"><span class="pre">BBH</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.BBH.BBH_OPTIONS"><code class="docutils literal notranslate"><span class="pre">BBH.BBH_OPTIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.BBH.BBH_TASKS"><code class="docutils literal notranslate"><span class="pre">BBH.BBH_TASKS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.preprocess_task_input"><code class="docutils literal notranslate"><span class="pre">preprocess_task_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.regex_match_option_label_text"><code class="docutils literal notranslate"><span class="pre">regex_match_option_label_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BBH.transform_bbh"><code class="docutils literal notranslate"><span class="pre">transform_bbh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.BoolQ">construct_data.hf_to_schema.BoolQ module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BoolQ.BoolQ"><code class="docutils literal notranslate"><span class="pre">BoolQ</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BoolQ.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.BoolQ.transform_boolq"><code class="docutils literal notranslate"><span class="pre">transform_boolq()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Hellaswag">construct_data.hf_to_schema.Hellaswag module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Hellaswag.Hellaswag"><code class="docutils literal notranslate"><span class="pre">Hellaswag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Hellaswag.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Hellaswag.transform_hellaswag"><code class="docutils literal notranslate"><span class="pre">transform_hellaswag()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.MMLUPro">construct_data.hf_to_schema.MMLUPro module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MMLUPro.MMLUPro"><code class="docutils literal notranslate"><span class="pre">MMLUPro</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MMLUPro.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MMLUPro.get_label_space"><code class="docutils literal notranslate"><span class="pre">get_label_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MMLUPro.transform_mmlupro"><code class="docutils literal notranslate"><span class="pre">transform_mmlupro()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.MathQA">construct_data.hf_to_schema.MathQA module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MathQA.MathQA"><code class="docutils literal notranslate"><span class="pre">MathQA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MathQA.get_choices"><code class="docutils literal notranslate"><span class="pre">get_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.MathQA.transform_mathqa"><code class="docutils literal notranslate"><span class="pre">transform_mathqa()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Piqa">construct_data.hf_to_schema.Piqa module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Piqa.Piqa"><code class="docutils literal notranslate"><span class="pre">Piqa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Piqa.transform_piqa"><code class="docutils literal notranslate"><span class="pre">transform_piqa()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Winogrande">construct_data.hf_to_schema.Winogrande module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Winogrande.Winogrande"><code class="docutils literal notranslate"><span class="pre">Winogrande</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html#construct_data.hf_to_schema.Winogrande.transform_winogrande"><code class="docutils literal notranslate"><span class="pre">transform_winogrande()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="construct_data.instruction.html">construct_data.instruction package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.alternate_case_correct_answer">construct_data.instruction.alternate_case_correct_answer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.alternate_case_correct_answer.alternate_case_correct_answer"><code class="docutils literal notranslate"><span class="pre">alternate_case_correct_answer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.alternate_case_correct_answer.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.alternate_case_correct_answer.apply_instruction_incorrect"><code class="docutils literal notranslate"><span class="pre">apply_instruction_incorrect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.capitalize_correct_answer">construct_data.instruction.capitalize_correct_answer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.capitalize_correct_answer.capitalize_correct_answer"><code class="docutils literal notranslate"><span class="pre">capitalize_correct_answer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.increment_correct_numeric_answer_by_one">construct_data.instruction.increment_correct_numeric_answer_by_one module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.increment_correct_numeric_answer_by_one.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.increment_correct_numeric_answer_by_one.increment_correct_numeric_answer_by_one"><code class="docutils literal notranslate"><span class="pre">increment_correct_numeric_answer_by_one()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.increment_incorrect_numeric_answers_by_one">construct_data.instruction.increment_incorrect_numeric_answers_by_one module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.increment_incorrect_numeric_answers_by_one.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.increment_incorrect_numeric_answers_by_one.increment_incorrect_numeric_answers_by_one"><code class="docutils literal notranslate"><span class="pre">increment_incorrect_numeric_answers_by_one()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.numformat_numeric_answer">construct_data.instruction.numformat_numeric_answer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.numformat_numeric_answer.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.numformat_numeric_answer.numformat_numeric_answer"><code class="docutils literal notranslate"><span class="pre">numformat_numeric_answer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer">construct_data.instruction.print_correct_answer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer.print_correct_answer"><code class="docutils literal notranslate"><span class="pre">print_correct_answer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_append_string">construct_data.instruction.print_correct_answer_append_string module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer_append_string.generate_random_string"><code class="docutils literal notranslate"><span class="pre">generate_random_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer_append_string.print_correct_answer_append_string"><code class="docutils literal notranslate"><span class="pre">print_correct_answer_append_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_in_words">construct_data.instruction.print_correct_answer_in_words module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer_in_words.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer_in_words.print_correct_answer_in_words"><code class="docutils literal notranslate"><span class="pre">print_correct_answer_in_words()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_label">construct_data.instruction.print_correct_answer_label module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.print_correct_answer_label.print_correct_answer_label"><code class="docutils literal notranslate"><span class="pre">print_correct_answer_label()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.reverse_correct_answer">construct_data.instruction.reverse_correct_answer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.reverse_correct_answer.reverse_correct_answer"><code class="docutils literal notranslate"><span class="pre">reverse_correct_answer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.reverse_correct_answer_alternate_case">construct_data.instruction.reverse_correct_answer_alternate_case module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.reverse_correct_answer_alternate_case.reverse_correct_answer_alternate_case"><code class="docutils literal notranslate"><span class="pre">reverse_correct_answer_alternate_case()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.sort_only_incorrect_answers">construct_data.instruction.sort_only_incorrect_answers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.sort_only_incorrect_answers.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.sort_only_incorrect_answers.sort_only_incorrect_answers"><code class="docutils literal notranslate"><span class="pre">sort_only_incorrect_answers()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.sort_options_to_create_string">construct_data.instruction.sort_options_to_create_string module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.sort_options_to_create_string.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.sort_options_to_create_string.sort_options_to_create_string"><code class="docutils literal notranslate"><span class="pre">sort_options_to_create_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.use_incorrect_options_to_create_string">construct_data.instruction.use_incorrect_options_to_create_string module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.use_incorrect_options_to_create_string.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.use_incorrect_options_to_create_string.use_incorrect_options_to_create_string"><code class="docutils literal notranslate"><span class="pre">use_incorrect_options_to_create_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.use_options_to_create_string">construct_data.instruction.use_options_to_create_string module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.use_options_to_create_string.apply_instruction"><code class="docutils literal notranslate"><span class="pre">apply_instruction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html#construct_data.instruction.use_options_to_create_string.use_options_to_create_string"><code class="docutils literal notranslate"><span class="pre">use_options_to_create_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-construct_data.constants">
+<span id="construct-data-constants-module"></span><h2>construct_data.constants module<a class="headerlink" href="#module-construct_data.constants" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.CATEGORY_MAPPING">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">CATEGORY_MAPPING</span></span><a class="reference internal" href="modules/construct_data/constants.html#CATEGORY_MAPPING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.CATEGORY_MAPPING" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defines instruction to instruction category mapping</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CATEGORY_MAPPING.categories">
+<span class="sig-name descname"><span class="pre">categories</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['String</span> <span class="pre">Manipulation',</span> <span class="pre">'Format</span> <span class="pre">Correct</span> <span class="pre">Answer',</span> <span class="pre">'No</span> <span class="pre">Manipulation',</span> <span class="pre">'Numeric</span> <span class="pre">Manipulation',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)']</span></em><a class="headerlink" href="#construct_data.constants.CATEGORY_MAPPING.categories" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CATEGORY_MAPPING.mapping">
+<span class="sig-name descname"><span class="pre">mapping</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'alternate_case_correct_answer':</span> <span class="pre">'String</span> <span class="pre">Manipulation',</span> <span class="pre">'capitalize_correct_answer':</span> <span class="pre">'String</span> <span class="pre">Manipulation',</span> <span class="pre">'increment_correct_numeric_answer_by_one':</span> <span class="pre">'Numeric</span> <span class="pre">Manipulation',</span> <span class="pre">'increment_incorrect_numeric_answers_by_one':</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)',</span> <span class="pre">'numformat_numeric_answer':</span> <span class="pre">'Format</span> <span class="pre">Correct</span> <span class="pre">Answer',</span> <span class="pre">'print_correct_answer':</span> <span class="pre">'print_correct_answer',</span> <span class="pre">'print_correct_answer_append_string':</span> <span class="pre">'Format</span> <span class="pre">Correct</span> <span class="pre">Answer',</span> <span class="pre">'print_correct_answer_in_words':</span> <span class="pre">'Format</span> <span class="pre">Correct</span> <span class="pre">Answer',</span> <span class="pre">'print_correct_answer_label':</span> <span class="pre">'print_correct_answer_label',</span> <span class="pre">'reverse_correct_answer':</span> <span class="pre">'String</span> <span class="pre">Manipulation',</span> <span class="pre">'reverse_correct_answer_alternate_case':</span> <span class="pre">'String</span> <span class="pre">Manipulation',</span> <span class="pre">'sort_only_incorrect_answers':</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)',</span> <span class="pre">'sort_options_to_create_string':</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List',</span> <span class="pre">'use_incorrect_options_to_create_string':</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)',</span> <span class="pre">'use_options_to_create_string':</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List'}</span></em><a class="headerlink" href="#construct_data.constants.CATEGORY_MAPPING.mapping" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.CATEGORY_SHORTFORM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">CATEGORY_SHORTFORM</span></span><a class="reference internal" href="modules/construct_data/constants.html#CATEGORY_SHORTFORM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.CATEGORY_SHORTFORM" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define short string names of all possible instruction categories in our KCIF</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CATEGORY_SHORTFORM.shortform">
+<span class="sig-name descname"><span class="pre">shortform</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'Format</span> <span class="pre">Correct</span> <span class="pre">Answer':</span> <span class="pre">'Format</span> <span class="pre">Ans.',</span> <span class="pre">'No</span> <span class="pre">Manipulation':</span> <span class="pre">'None',</span> <span class="pre">'Numeric</span> <span class="pre">Manipulation':</span> <span class="pre">'Numeric',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List':</span> <span class="pre">'List</span> <span class="pre">Ops.',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)':</span> <span class="pre">'List</span> <span class="pre">Ops.</span> <span class="pre">Conditional',</span> <span class="pre">'String</span> <span class="pre">Manipulation':</span> <span class="pre">'String',</span> <span class="pre">'print_correct_answer':</span> <span class="pre">'print_correct_answer',</span> <span class="pre">'print_correct_answer_label':</span> <span class="pre">'print_correct_answer_label'}</span></em><a class="headerlink" href="#construct_data.constants.CATEGORY_SHORTFORM.shortform" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">CLASSIFICATION</span></span><a class="reference internal" href="modules/construct_data/constants.html#CLASSIFICATION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.CLASSIFICATION" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Define all possible instruction categories in our KCIF</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.CLASSIFICATION">
+<span class="sig-name descname"><span class="pre">CLASSIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CLASSIFICATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.CLASSIFICATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.FORMATTING_LISTS">
+<span class="sig-name descname"><span class="pre">FORMATTING_LISTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FORMATTING_LISTS'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.FORMATTING_LISTS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.LABEL_MANIPULATION">
+<span class="sig-name descname"><span class="pre">LABEL_MANIPULATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LABEL_MANIPULATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.LABEL_MANIPULATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.LIST_MANIPULATION">
+<span class="sig-name descname"><span class="pre">LIST_MANIPULATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LIST_MANIPULATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.LIST_MANIPULATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.LIST_STRING_MANIPULATION">
+<span class="sig-name descname"><span class="pre">LIST_STRING_MANIPULATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'LIST_STRING_MANIPULATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.LIST_STRING_MANIPULATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.NUMERIC_MANIPULATION">
+<span class="sig-name descname"><span class="pre">NUMERIC_MANIPULATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NUMERIC_MANIPULATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.NUMERIC_MANIPULATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.CLASSIFICATION.STRING_MANIPULATION">
+<span class="sig-name descname"><span class="pre">STRING_MANIPULATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'STRING_MANIPULATION'</span></em><a class="headerlink" href="#construct_data.constants.CLASSIFICATION.STRING_MANIPULATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.DATASETS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">DATASETS</span></span><a class="reference internal" href="modules/construct_data/constants.html#DATASETS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.DATASETS" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defines the datasets used in our KCIF</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.DATASETS.datasets">
+<span class="sig-name descname"><span class="pre">datasets</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['MMLUPro',</span> <span class="pre">'Piqa',</span> <span class="pre">'Winogrande',</span> <span class="pre">'BBH',</span> <span class="pre">'BoolQ',</span> <span class="pre">'MathQA']</span></em><a class="headerlink" href="#construct_data.constants.DATASETS.datasets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.PAPER_TABLES">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">PAPER_TABLES</span></span><a class="reference internal" href="modules/construct_data/constants.html#PAPER_TABLES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.PAPER_TABLES" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.PAPER_TABLES.EXACT_MATCH_COLUMN_NAME">
+<span class="sig-name descname"><span class="pre">EXACT_MATCH_COLUMN_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'em_after_response_strict'</span></em><a class="headerlink" href="#construct_data.constants.PAPER_TABLES.EXACT_MATCH_COLUMN_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.PAPER_TABLES.IF_ERROR_COLUMN_NAME">
+<span class="sig-name descname"><span class="pre">IF_ERROR_COLUMN_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instr_follow_error_strict'</span></em><a class="headerlink" href="#construct_data.constants.PAPER_TABLES.IF_ERROR_COLUMN_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.PAPER_TABLES.REASONING_ERROR_COLUMN_NAME">
+<span class="sig-name descname"><span class="pre">REASONING_ERROR_COLUMN_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reasoning_error_strict'</span></em><a class="headerlink" href="#construct_data.constants.PAPER_TABLES.REASONING_ERROR_COLUMN_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">SCHEMA_KEYS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/constants.html#SCHEMA_KEYS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Define SCHEMA_KEYS, an Enum of keys to be used in our schema</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_LABEL_SPACE">
+<span class="sig-name descname"><span class="pre">CANDIDATE_ANSWER_LABEL_SPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'candidate_answer_label_space'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_LABEL_SPACE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_SET">
+<span class="sig-name descname"><span class="pre">CANDIDATE_ANSWER_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'candidate_answer_set'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_SET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.COT_INSTRUCTION">
+<span class="sig-name descname"><span class="pre">COT_INSTRUCTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cot_instruction'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.COT_INSTRUCTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.DATA_SET">
+<span class="sig-name descname"><span class="pre">DATA_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dataset'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.DATA_SET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.FINAL_PREFIX_TASK_INSTRUCTION">
+<span class="sig-name descname"><span class="pre">FINAL_PREFIX_TASK_INSTRUCTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'final_prefix_task_instruction'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.FINAL_PREFIX_TASK_INSTRUCTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.FINAL_SUFFIX_TASK_INSTRUCTION">
+<span class="sig-name descname"><span class="pre">FINAL_SUFFIX_TASK_INSTRUCTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'final_suffix_task_instruction'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.FINAL_SUFFIX_TASK_INSTRUCTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_LABEL">
+<span class="sig-name descname"><span class="pre">GROUND_TRUTH_ANSWER_LABEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ground_truth_answer_label'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_LABEL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_TEXT">
+<span class="sig-name descname"><span class="pre">GROUND_TRUTH_ANSWER_TEXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ground_truth_answer_text'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_TEXT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.HF_DATA_NAME">
+<span class="sig-name descname"><span class="pre">HF_DATA_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'hf_dataset'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.HF_DATA_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.INPUT_INSTANCE">
+<span class="sig-name descname"><span class="pre">INPUT_INSTANCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dataset_input'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.INPUT_INSTANCE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.INSTANCE_ID">
+<span class="sig-name descname"><span class="pre">INSTANCE_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instance_id'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.INSTANCE_ID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.INSTRUCTION_FOLLOWING_ERRORS_SET">
+<span class="sig-name descname"><span class="pre">INSTRUCTION_FOLLOWING_ERRORS_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instruction_following_errors_set'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_FOLLOWING_ERRORS_SET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.INSTRUCTION_ID">
+<span class="sig-name descname"><span class="pre">INSTRUCTION_ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instruction_id'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_ID" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.INSTRUCTION_OUTPUT">
+<span class="sig-name descname"><span class="pre">INSTRUCTION_OUTPUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instruction_output'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_OUTPUT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.REASONING_ERROR_SET">
+<span class="sig-name descname"><span class="pre">REASONING_ERROR_SET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reasoning_error_set'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.REASONING_ERROR_SET" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.TASK_INSTRUCTIONS">
+<span class="sig-name descname"><span class="pre">TASK_INSTRUCTIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'task_instructions'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.TASK_INSTRUCTIONS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.TASK_PROMPT">
+<span class="sig-name descname"><span class="pre">TASK_PROMPT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dataset_instruction'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.TASK_PROMPT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.SCHEMA_KEYS.TASK_TYPE">
+<span class="sig-name descname"><span class="pre">TASK_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'task_type'</span></em><a class="headerlink" href="#construct_data.constants.SCHEMA_KEYS.TASK_TYPE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="construct_data.constants.TABLE_ORDERING">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">TABLE_ORDERING</span></span><a class="reference internal" href="modules/construct_data/constants.html#TABLE_ORDERING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.TABLE_ORDERING" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Defines ordering of instructions for computing and displaying the metrics</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="construct_data.constants.TABLE_ORDERING.categories">
+<span class="sig-name descname"><span class="pre">categories</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['print_correct_answer_label',</span> <span class="pre">'print_correct_answer',</span> <span class="pre">'String</span> <span class="pre">Manipulation',</span> <span class="pre">'Numeric</span> <span class="pre">Manipulation',</span> <span class="pre">'Format</span> <span class="pre">Correct</span> <span class="pre">Answer',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List</span> <span class="pre">(Conditional)',</span> <span class="pre">'Operations</span> <span class="pre">on</span> <span class="pre">List']</span></em><a class="headerlink" href="#construct_data.constants.TABLE_ORDERING.categories" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="construct_data.constants.create_schema">
+<span class="sig-prename descclassname"><span class="pre">construct_data.constants.</span></span><span class="sig-name descname"><span class="pre">create_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="modules/construct_data/constants.html#create_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#construct_data.constants.create_schema" title="Link to this definition"></a></dt>
+<dd><p>Initialize the schema dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>schema</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="construct-data-create-benchmark-module">
+<h2>construct_data.create_benchmark module<a class="headerlink" href="#construct-data-create-benchmark-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-construct_data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-construct_data" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="construct_data.hf_to_schema.html" class="btn btn-neutral float-right" title="construct_data.hf_to_schema package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

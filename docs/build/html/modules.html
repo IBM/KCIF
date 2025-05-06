@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="static/jquery.js?v=5d32c60e"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="static/documentation_options.js?v=8d563738"></script>
+        <script src="static/doctools.js?v=9bcbadda"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="construct_data package" href="construct_data.html" />
+    <link rel="prev" title="Instruction Creation" href="instruction_creation_rst.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html">construct_data package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html">Evaluating LLMs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="construct_data.html">construct_data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.hf_to_schema.html">construct_data.hf_to_schema package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.ARCC">construct_data.hf_to_schema.ARCC module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.ARCE">construct_data.hf_to_schema.ARCE module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.BBH">construct_data.hf_to_schema.BBH module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.BoolQ">construct_data.hf_to_schema.BoolQ module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Hellaswag">construct_data.hf_to_schema.Hellaswag module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.MMLUPro">construct_data.hf_to_schema.MMLUPro module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.MathQA">construct_data.hf_to_schema.MathQA module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Piqa">construct_data.hf_to_schema.Piqa module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema.Winogrande">construct_data.hf_to_schema.Winogrande module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.hf_to_schema.html#module-construct_data.hf_to_schema">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.instruction.html">construct_data.instruction package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.alternate_case_correct_answer">construct_data.instruction.alternate_case_correct_answer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.capitalize_correct_answer">construct_data.instruction.capitalize_correct_answer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.increment_correct_numeric_answer_by_one">construct_data.instruction.increment_correct_numeric_answer_by_one module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.increment_incorrect_numeric_answers_by_one">construct_data.instruction.increment_incorrect_numeric_answers_by_one module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.numformat_numeric_answer">construct_data.instruction.numformat_numeric_answer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer">construct_data.instruction.print_correct_answer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_append_string">construct_data.instruction.print_correct_answer_append_string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_in_words">construct_data.instruction.print_correct_answer_in_words module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.print_correct_answer_label">construct_data.instruction.print_correct_answer_label module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.reverse_correct_answer">construct_data.instruction.reverse_correct_answer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.reverse_correct_answer_alternate_case">construct_data.instruction.reverse_correct_answer_alternate_case module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.sort_only_incorrect_answers">construct_data.instruction.sort_only_incorrect_answers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.sort_options_to_create_string">construct_data.instruction.sort_options_to_create_string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.use_incorrect_options_to_create_string">construct_data.instruction.use_incorrect_options_to_create_string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction.use_options_to_create_string">construct_data.instruction.use_options_to_create_string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.instruction.html#module-construct_data.instruction">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html#module-construct_data.constants">construct_data.constants module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.CATEGORY_MAPPING"><code class="docutils literal notranslate"><span class="pre">CATEGORY_MAPPING</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CATEGORY_MAPPING.categories"><code class="docutils literal notranslate"><span class="pre">CATEGORY_MAPPING.categories</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CATEGORY_MAPPING.mapping"><code class="docutils literal notranslate"><span class="pre">CATEGORY_MAPPING.mapping</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.CATEGORY_SHORTFORM"><code class="docutils literal notranslate"><span class="pre">CATEGORY_SHORTFORM</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CATEGORY_SHORTFORM.shortform"><code class="docutils literal notranslate"><span class="pre">CATEGORY_SHORTFORM.shortform</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.CLASSIFICATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.CLASSIFICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.FORMATTING_LISTS"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.FORMATTING_LISTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.LABEL_MANIPULATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.LABEL_MANIPULATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.LIST_MANIPULATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.LIST_MANIPULATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.LIST_STRING_MANIPULATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.LIST_STRING_MANIPULATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.NUMERIC_MANIPULATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.NUMERIC_MANIPULATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.CLASSIFICATION.STRING_MANIPULATION"><code class="docutils literal notranslate"><span class="pre">CLASSIFICATION.STRING_MANIPULATION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.DATASETS"><code class="docutils literal notranslate"><span class="pre">DATASETS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.DATASETS.datasets"><code class="docutils literal notranslate"><span class="pre">DATASETS.datasets</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.PAPER_TABLES"><code class="docutils literal notranslate"><span class="pre">PAPER_TABLES</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.PAPER_TABLES.EXACT_MATCH_COLUMN_NAME"><code class="docutils literal notranslate"><span class="pre">PAPER_TABLES.EXACT_MATCH_COLUMN_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.PAPER_TABLES.IF_ERROR_COLUMN_NAME"><code class="docutils literal notranslate"><span class="pre">PAPER_TABLES.IF_ERROR_COLUMN_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.PAPER_TABLES.REASONING_ERROR_COLUMN_NAME"><code class="docutils literal notranslate"><span class="pre">PAPER_TABLES.REASONING_ERROR_COLUMN_NAME</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_LABEL_SPACE"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.CANDIDATE_ANSWER_LABEL_SPACE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.CANDIDATE_ANSWER_SET"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.CANDIDATE_ANSWER_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.COT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.COT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.DATA_SET"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.DATA_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.FINAL_PREFIX_TASK_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.FINAL_PREFIX_TASK_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.FINAL_SUFFIX_TASK_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.FINAL_SUFFIX_TASK_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_LABEL"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.GROUND_TRUTH_ANSWER_LABEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.GROUND_TRUTH_ANSWER_TEXT"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.GROUND_TRUTH_ANSWER_TEXT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.HF_DATA_NAME"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.HF_DATA_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.INPUT_INSTANCE"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.INPUT_INSTANCE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.INSTANCE_ID"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.INSTANCE_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_FOLLOWING_ERRORS_SET"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.INSTRUCTION_FOLLOWING_ERRORS_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_ID"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.INSTRUCTION_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.INSTRUCTION_OUTPUT"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.INSTRUCTION_OUTPUT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.REASONING_ERROR_SET"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.REASONING_ERROR_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.TASK_INSTRUCTIONS"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.TASK_INSTRUCTIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.TASK_PROMPT"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.TASK_PROMPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.SCHEMA_KEYS.TASK_TYPE"><code class="docutils literal notranslate"><span class="pre">SCHEMA_KEYS.TASK_TYPE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.TABLE_ORDERING"><code class="docutils literal notranslate"><span class="pre">TABLE_ORDERING</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="construct_data.html#construct_data.constants.TABLE_ORDERING.categories"><code class="docutils literal notranslate"><span class="pre">TABLE_ORDERING.categories</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="construct_data.html#construct_data.constants.create_schema"><code class="docutils literal notranslate"><span class="pre">create_schema()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html#construct-data-create-benchmark-module">construct_data.create_benchmark module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construct_data.html#module-construct_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Evaluating LLMs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inference.html#inference.run_inference.apply_chat_template"><code class="docutils literal notranslate"><span class="pre">apply_chat_template()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="inference.html#inference.run_inference.get_args"><code class="docutils literal notranslate"><span class="pre">get_args()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="instruction_creation_rst.html" class="btn btn-neutral float-left" title="Instruction Creation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="construct_data.html" class="btn btn-neutral float-right" title="construct_data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

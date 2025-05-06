@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inference.run_inference &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../static/jquery.js?v=5d32c60e"></script>
+        <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../static/documentation_options.js?v=8d563738"></script>
+        <script src="../../static/doctools.js?v=9bcbadda"></script>
+        <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">inference.run_inference</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for inference.run_inference</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">ArgumentParser</span><span class="p">,</span> <span class="n">Namespace</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">vllm</span> <span class="kn">import</span> <span class="n">LLM</span><span class="p">,</span> <span class="n">SamplingParams</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unable tp Import VLLM&quot;</span><span class="p">)</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;KCIF&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_args">
+<a class="viewcode-back" href="../../inference.html#inference.run_inference.get_args">[docs]</a>
+<span class="k">def</span> <span class="nf">get_args</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Namespace</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Define Arguments used in command-line</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Namespace: _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgumentParser</span><span class="p">()</span>
+
+    <span class="n">group</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_argument_group</span><span class="p">(</span><span class="s2">&quot;Evaluate LLM on KCIF&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--engine&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;vllm&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--base_url&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--model_name&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B-Instruct&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;model name to use&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--tokenizer_name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--tensor_parallel_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--dtype&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--input_path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;data path&quot;</span><span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--batch_size&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;batch size for inference&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--max_input_length&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">8192</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;max input length&quot;</span>
+    <span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--max_output_length&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;max output length&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">group</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--output_folder&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;output folder&quot;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">args</span></div>
+
+
+
+<div class="viewcode-block" id="apply_chat_template">
+<a class="viewcode-back" href="../../inference.html#inference.run_inference.apply_chat_template">[docs]</a>
+<span class="k">def</span> <span class="nf">apply_chat_template</span><span class="p">(</span><span class="n">user_message</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies chat template dfined by the tokenizer</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        user_message (_type_): user messahe</span>
+<span class="sd">        tokenizer (_type_): tokenizer</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: user message after applying chat template</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chat</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">conversation</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">conversation</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="n">conversation</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_message</span>
+
+    <span class="n">chat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conversation</span><span class="p">)</span>
+
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span>
+        <span class="n">chat</span><span class="p">,</span>
+        <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">prompt</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">get_args</span><span class="p">()</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">model_name</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output_folder</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output_folder</span><span class="p">)</span>
+    <span class="n">output_folder</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output_folder</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;loading model!&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">tokenizer_name</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">tokenizer_name</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">model_name</span>
+
+    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;vllm&quot;</span><span class="p">:</span>
+        <span class="n">sampling_params</span> <span class="o">=</span> <span class="n">SamplingParams</span><span class="p">(</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">max_output_length</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="n">llm</span> <span class="o">=</span> <span class="n">LLM</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">tokenizer</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">tokenizer_name</span><span class="p">,</span>
+            <span class="n">tensor_parallel_size</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">tensor_parallel_size</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+            <span class="n">gpu_memory_utilization</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+            <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;hf&quot;</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading huggingface model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;online&quot;</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+            <span class="c1"># Or use the `OPENAI_BASE_URL` env var</span>
+            <span class="n">base_url</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">all_datasets</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input_path</span><span class="p">,</span> <span class="s2">&quot;*jsonl&quot;</span><span class="p">))</span>
+    <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">id_to_instance_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># check if the output folder contains partial results jsonl file</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;all_results.jsonl&quot;</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;all_results.jsonl&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+            <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span>
+            <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">each_line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="n">each_instance</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">each_line</span><span class="p">)</span>
+                <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">each_instance</span><span class="p">)</span>
+
+                <span class="n">id_to_instance_mapping</span><span class="p">[</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">each_instance</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">each_instance</span><span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">each_instance</span><span class="p">[</span><span class="s2">&quot;instruction_id&quot;</span><span class="p">]</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="n">each_instance</span>
+            <span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Read </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span><span class="si">}</span><span class="s2"> number of existing generations&quot;</span><span class="p">)</span>
+
+    <span class="c1"># for each dataset and instruction combination</span>
+    <span class="k">for</span> <span class="n">each_dataset_instruction</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">all_datasets</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading evaluation on </span><span class="si">{</span><span class="n">each_dataset_instruction</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+        <span class="n">data_instances</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span>
+            <span class="n">each_dataset_instruction</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">each_line</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="n">instance</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">each_line</span><span class="p">)</span>
+                <span class="n">instance</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_instances</span><span class="p">)</span>
+                <span class="n">data_instances</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+            <span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Number of instances in dataset </span><span class="si">{</span><span class="n">each_dataset_instruction</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_instances</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;vllm&quot;</span><span class="p">:</span>
+            <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">batch_examples</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">data_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_instances</span><span class="p">)),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;For each instance in dataset </span><span class="si">{</span><span class="n">each_dataset_instruction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="n">instance_id</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;instruction_id&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">instance_id</span> <span class="ow">in</span> <span class="n">id_to_instance_mapping</span><span class="p">:</span>
+                    <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">])</span>
+                    <span class="k">continue</span>
+
+                <span class="n">batch_examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span>
+                    <span class="n">input_prompts</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="c1"># apply chat template for each example</span>
+                    <span class="k">for</span> <span class="n">each_example</span> <span class="ow">in</span> <span class="n">batch_examples</span><span class="p">:</span>
+                        <span class="n">input_prompts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">apply_chat_template</span><span class="p">(</span><span class="n">each_example</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span> <span class="n">tokenizer</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+                    <span class="n">outputs</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+                        <span class="n">input_prompts</span><span class="p">,</span> <span class="n">sampling_params</span><span class="o">=</span><span class="n">sampling_params</span><span class="p">,</span> <span class="n">use_tqdm</span><span class="o">=</span><span class="kc">False</span>
+                    <span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">each_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">)):</span>
+                        <span class="n">batch_examples</span><span class="p">[</span><span class="n">each_index</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="n">outputs</span><span class="p">[</span><span class="n">each_index</span><span class="p">]</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+                        <span class="p">)</span>
+                        <span class="n">batch_examples</span><span class="p">[</span><span class="n">each_index</span><span class="p">][</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_prompts</span><span class="p">[</span><span class="n">each_index</span><span class="p">]</span>
+                        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">[</span><span class="n">each_index</span><span class="p">])</span>
+
+                    <span class="n">batch_examples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Huggingface inference</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;hf&quot;</span><span class="p">:</span>
+            <span class="n">batch_examples</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">data_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_instances</span><span class="p">)),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;For each instance in dataset </span><span class="si">{</span><span class="n">each_dataset_instruction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="n">batch_examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">])</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span>
+                    <span class="n">input_prompts</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="c1"># apply chat template for each example</span>
+                    <span class="k">for</span> <span class="n">each_example</span> <span class="ow">in</span> <span class="n">batch_examples</span><span class="p">:</span>
+                        <span class="n">input_prompts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="n">apply_chat_template</span><span class="p">(</span><span class="n">each_example</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span> <span class="n">tokenizer</span><span class="p">)</span>
+                        <span class="p">)</span>
+
+                    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">input_prompts</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+                        <span class="n">inputs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+
+                    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+                        <span class="n">input_ids</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
+                        <span class="n">attention_mask</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">],</span>
+                        <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">max_output_length</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="n">decoded_outputs</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">outputs</span>
+                    <span class="p">]</span>
+
+                    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">)):</span>
+                        <span class="n">batch_examples</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoded_outputs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                            <span class="n">input_prompts</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                        <span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                        <span class="n">temp</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+                            <span class="n">batch_examples</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">],</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">False</span>
+                        <span class="p">)</span>
+                        <span class="n">batch_examples</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+                            <span class="n">temp</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span>
+                        <span class="p">)</span>
+                        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_examples</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+                    <span class="n">batch_examples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">engine</span> <span class="o">==</span> <span class="s2">&quot;online&quot;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">data_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_instances</span><span class="p">)),</span>
+                <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;For each instance in dataset </span><span class="si">{</span><span class="n">each_dataset_instruction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="n">instance_id</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;dataset&quot;</span><span class="p">]</span>
+                    <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+                    <span class="o">+</span> <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;instruction_id&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">instance_id</span> <span class="ow">in</span> <span class="n">id_to_instance_mapping</span><span class="p">:</span>
+                    <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">])</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># apply chat template for each example</span>
+                <span class="n">input_prompt</span> <span class="o">=</span> <span class="n">apply_chat_template</span><span class="p">(</span><span class="n">each_example</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">])</span>
+                <span class="n">chat_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">messages</span><span class="o">=</span><span class="n">input_prompt</span><span class="p">,</span>
+                    <span class="n">model</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span>
+                <span class="p">)</span>
+
+                <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">input_prompt</span>
+                <span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chat_completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span>
+                    <span class="mi">0</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_instances</span><span class="p">[</span><span class="n">data_index</span><span class="p">][</span><span class="s2">&quot;prompt&quot;</span><span class="p">])</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;all_results.jsonl&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">each_result</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">:</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">each_result</span><span class="p">))</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

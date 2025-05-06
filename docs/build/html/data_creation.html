@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intermediate Schema Creation &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="static/jquery.js?v=5d32c60e"></script>
+        <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="static/documentation_options.js?v=8d563738"></script>
+        <script src="static/doctools.js?v=9bcbadda"></script>
+        <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intermediate Schema Creation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_creation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intermediate-schema-creation">
+<h1>Intermediate Schema Creation<a class="headerlink" href="#intermediate-schema-creation" title="Link to this heading"></a></h1>
+<p>This readme contains instructions on converting any dataset into intermediate schema. To begin with we will define the schema</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">INTERMEDIATE_SCHEMA=</span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;hf_dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;task_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Generative/MCQ&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;instruction_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dataset_input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;candidate_answer_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;candidate_answer_label_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;ground_truth_answer_label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">&quot;ground_truth_answer_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dataset_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;final_suffix_task_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;final_prefix_task_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;task_instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;instruction_output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;instruction_following_errors_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;reasoning_error_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">    </span><span class="nt">&quot;cot_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here,</p>
+<ul class="simple">
+<li><p>instruction_id: Instruction Name, should match the file and function name</p></li>
+<li><p>dataset_input: Instance given to the LLM without any instruction.</p></li>
+<li><p>candidate_answer_set: the list of all posssible answers for that instance</p></li>
+<li><p>candidate_answer_label_space: the list of all posssible answer labels</p></li>
+<li><p>dataset_instruction: Task Prompt. Task prompt should not define how to generate the answer.</p></li>
+<li><p>final_suffix_task_instruction: The final task instruction which gets appended to the input and original_task_instruction</p></li>
+<li><p>final_prefix_task_instruction: The final task instruction which gets prepended to the input and original_task_instruction</p></li>
+<li><p>instruction_following_errors_set: overridden by the specific instruction which gets applied</p></li>
+<li><p>reasoning_error_set”: overridden by the specific instruction which gets applied</p></li>
+<li><p>cot_instruction”:# overridden by the specific instruction which gets applied</p></li>
+</ul>
+<p>Every instance needs to be converted to the above format. For example, an instance in BoolQ dataset looks like this</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;passage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Persian (/ˈpɜːrʒən, -ʃən/), also known by its endonym Farsi (فارسی fārsi (fɒːɾˈsiː) ( listen)), is one of the Western Iranian languages within the Indo-Iranian branch of the Indo-European language family. It is primarily spoken in Iran, Afghanistan (officially known as Dari since 1958), and Tajikistan (officially known as Tajiki since the Soviet era), and some other regions which historically were Persianate societies and considered part of Greater Iran. It is written in the Persian alphabet, a modified variant of the Arabic script, which itself evolved from the Aramaic alphabet.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;do iran and afghanistan speak the same language&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>will look like</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BoolQ&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;hf_dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://huggingface.co/datasets/google/boolq/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;task_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MCQ&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;instruction_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;instance_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dataset_input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Passage: Once all the players have completed their hands, it is the dealer&#39;s turn. The dealer hand will not be completed if all players have either busted or received Blackjacks. The dealer then reveals the hidden card and must hit until the cards total 17 or more points. (At most tables the dealer also hits on a ``soft&#39;&#39; 17, i.e. a hand containing an ace and one or more other cards totaling six.) Players win by not busting and having a total higher than the dealer, or not busting and having the dealer bust, or getting a blackjack without the dealer getting a blackjack. If the player and dealer have the same total (not counting blackjacks), this is called a ``push&#39;&#39;, and the player typically does not win or lose money on that hand. Otherwise, the dealer wins.\nQuestion: does the dealer have to hit on 16\nOptions: &quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;candidate_answer_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;candidate_answer_label_space&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;ground_truth_answer_label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ground_truth_answer_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;dataset_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Given a passage and a boolean question, and the possible answer candidates &#39;A&#39; or &#39;B&#39;, &quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;final_prefix_task_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;final_suffix_task_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;task_instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;Given a passage and a boolean question, and the possible answer candidates &#39;A&#39; or &#39;B&#39;, &quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;instruction_output&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;instruction_following_errors_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;reasoning_error_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;cot_instruction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CLASSIFICATION&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;COT&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-a-new-dataset">
+<h1>Adding a new dataset<a class="headerlink" href="#adding-a-new-dataset" title="Link to this heading"></a></h1>
+<p>To add a new dataset, create a new class file. The class file should have the same name as the class name for that dataset. For example, to add <code class="docutils literal notranslate"><span class="pre">BoolQ</span></code> dataset, the filename should be <code class="docutils literal notranslate"><span class="pre">BoolQ.py</span></code> and the file should have a class named <code class="docutils literal notranslate"><span class="pre">BoolQ</span></code>. The class should load the dataset and convert each instance to the schema prescribed above. The file <code class="docutils literal notranslate"><span class="pre">BoolQ.py</span></code> can be used as reference for creating such a file.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

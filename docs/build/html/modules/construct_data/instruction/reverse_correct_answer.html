@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>construct_data.instruction.reverse_correct_answer &mdash; KCIF 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            KCIF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">KCIF</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Conversion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_creation_rst.html">Intermediate Schema Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_creation_rst.html#adding-a-new-dataset">Adding a new dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Instruction Creation Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../instruction_creation_rst.html">Instruction Creation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">API Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Citation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation.html">Citation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">KCIF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">construct_data.instruction.reverse_correct_answer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for construct_data.instruction.reverse_correct_answer</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">r</span>
+<span class="kn">from</span> <span class="nn">..constants</span> <span class="kn">import</span> <span class="n">SCHEMA_KEYS</span><span class="p">,</span> <span class="n">CLASSIFICATION</span><span class="p">,</span> <span class="n">COT_SUFFIX</span>
+
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">2024</span>
+<span class="n">r</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="c1"># reverse_correct_answer</span>
+<span class="n">reverse_correct_answer_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;instruction_id&quot;</span><span class="p">:</span> <span class="s2">&quot;reverse_correct_answer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;instruction_text&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;answer the question by printing the text associated with the correct option label, in reverse. Do not print the option label.&quot;</span>
+    <span class="p">],</span>  <span class="c1"># &quot;Perform a string reversal of the correct answer&quot;, &quot;Reverse the sequence of characters in the correct answer.&quot;],</span>
+    <span class="s2">&quot;operation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot; REVERSE_CORRECT_ANSWER &quot;</span><span class="p">],</span>
+    <span class="s2">&quot;python_function_name&quot;</span><span class="p">:</span> <span class="s2">&quot;reverse_correct_answer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;python_args&quot;</span><span class="p">:</span> <span class="s2">&quot;instruction_instance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;target_answer_return_type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="reverse_correct_answer">
+<a class="viewcode-back" href="../../../construct_data.instruction.html#construct_data.instruction.reverse_correct_answer.reverse_correct_answer">[docs]</a>
+<span class="k">def</span> <span class="nf">reverse_correct_answer</span><span class="p">(</span><span class="n">input_instance</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function applies the reverse_correct_answer instruction on</span>
+<span class="sd">    the given instance. In addition, it defines the reasoning and instruction</span>
+<span class="sd">    following errors for the instruction</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_instance (dict): input instance</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: transformed instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_TYPE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MCQ&quot;</span>
+    <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_ID</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_correct_answer_schema</span><span class="p">[</span>
+        <span class="s2">&quot;instruction_id&quot;</span>
+    <span class="p">]</span>
+    <span class="n">new_instruction</span> <span class="o">=</span> <span class="n">reverse_correct_answer_schema</span><span class="p">[</span><span class="s2">&quot;instruction_text&quot;</span><span class="p">][</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">reverse_correct_answer_schema</span><span class="p">[</span><span class="s2">&quot;instruction_text&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># we add reversing correct answer instruction to the instruction list</span>
+    <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_INSTRUCTIONS</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_instruction</span><span class="p">)</span>
+    <span class="n">input_instance</span><span class="p">[</span>
+        <span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_FOLLOWING_ERRORS_SET</span><span class="o">.</span><span class="n">value</span>
+    <span class="p">]</span> <span class="o">+=</span> <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_PREFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">TASK_PROMPT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">new_instruction</span>
+    <span class="p">)</span>
+    <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">COT_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">FINAL_PREFIX_TASK_INSTRUCTION</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">+</span> <span class="n">COT_SUFFIX</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_FOLLOWING_ERRORS_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_OUTPUT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_FOLLOWING_ERRORS_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">INSTRUCTION_OUTPUT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">)</span>
+
+    <span class="c1"># apply instruction to all candidate outputs</span>
+    <span class="n">candidate_outputs</span> <span class="o">=</span> <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">gd</span> <span class="o">=</span> <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">GROUND_TRUTH_ANSWER_TEXT</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gd</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">gd</span> <span class="o">=</span> <span class="n">gd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">candidate_label</span><span class="p">,</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">CANDIDATE_ANSWER_LABEL_SPACE</span><span class="o">.</span><span class="n">value</span><span class="p">],</span>
+        <span class="n">candidate_outputs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">candidate</span> <span class="o">=</span> <span class="n">candidate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">candidate</span> <span class="o">!=</span> <span class="n">gd</span><span class="p">:</span>
+            <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">REASONING_ERROR_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+            <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">REASONING_ERROR_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">candidate</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">input_instance</span><span class="p">[</span><span class="n">SCHEMA_KEYS</span><span class="o">.</span><span class="n">REASONING_ERROR_SET</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">candidate_label</span>
+            <span class="p">)</span>
+
+    <span class="n">input_instance</span><span class="p">[</span><span class="n">CLASSIFICATION</span><span class="o">.</span><span class="n">CLASSIFICATION</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLASSIFICATION</span><span class="o">.</span><span class="n">STRING_MANIPULATION</span>
+    <span class="k">return</span> <span class="n">input_instance</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Rudra Murthy, Prince Kumar, Praveen Venkateswaran, Danish Contractor.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
