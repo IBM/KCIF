@@ -1,6 +1,6 @@
 datasets
 num2words==0.5.14
-openai==1.52.0
+openai==1.78.0
 torch
 tqdm==4.66.5
 transformers
